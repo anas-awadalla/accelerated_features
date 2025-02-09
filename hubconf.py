@@ -2,7 +2,7 @@ dependencies = ['torch']
 from modules.xfeat import XFeat as _XFeat
 import torch
 
-def XFeat(pretrained=True, top_k=4096, detection_threshold=0.05):
+def XFeat(pretrained=True, top_k=4096, detection_threshold=0.05, device="cpu"):
     """
     XFeat model
     pretrained (bool): kwargs, load pretrained weights into the model
@@ -11,5 +11,5 @@ def XFeat(pretrained=True, top_k=4096, detection_threshold=0.05):
     if pretrained:
         weights = torch.hub.load_state_dict_from_url("https://github.com/verlab/accelerated_features/raw/main/weights/xfeat.pt")
     
-    model = _XFeat(weights, top_k=top_k, detection_threshold=detection_threshold)
+    model = _XFeat(weights, top_k=top_k, detection_threshold=detection_threshold, device=device)
     return model
